@@ -2,18 +2,83 @@ html, body {
   margin: 0;
   height: 100%;
   overflow: hidden;
+  font-family: Arial, sans-serif;
 }
 
-#mapContainer {
-  position: relative;
-  width: 100%;
+/* Style of Menu */
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 0px;
+  z-index: 100;
+  font-size: 24px;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  user-select: none;
+  transition: left 0.3s ease;
+}
+
+/*style of opened menu*/
+.menu-toggle.menu-open {
+  left: 250px; /* 250menu width + x(x = whatever addtional length you want) */
+}
+
+/* style of side menu */
+#sideMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
   height: 100%;
+  background: rgba(20, 20, 20, 0.95);
+  box-shadow: 2px 0 8px rgba(0,0,0,0.6);
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  transform: translateX(-250px);
+  transition: transform 0.3s ease;
+  z-index: 90;
+  color: white;
+}
+
+#sideMenu.open {
+  transform: translateX(0);
+}
+
+#sideMenu h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: normal;
+  border-bottom: 1px solid #444;
+  padding-bottom: 6px;
+}
+
+/* style of map container */
+#mapContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #222;
-  overflow: hidden;
   user-select: none;
   cursor: grab;
+  transition: left 0.3s ease, width 0.3s ease;
+  overflow: hidden;
 }
 
+/* dealing with the event- "menu Opened"  */
+#mapContainer.menu-open {
+  left: 250px;
+  width: calc(100% - 250px);
+}
+
+/* style of the map */
 #mapImage {
   position: absolute;
   top: 0;
@@ -21,20 +86,110 @@ html, body {
   transform-origin: top left;
   will-change: transform;
   -webkit-user-drag: none;
-  user-drag: none;
+
 }
 
+/* style of music controller */
+.music-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* style of music button */
+.music-control {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*style of music button image*/
+.music-control img {
+  display: block;
+  width: 24px;
+  height: 24px;
+  transform: scale(2.5);
+  transform-origin: center center;
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+
+.music-control.paused img {
+  opacity: 0.5;
+}
+
+.music-control:hover img {
+  opacity: 1;
+}
+
+/* music value control */
+#volumeControl {
+  width: 130px;
+  height: 6px;
+  background: #555;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#volumeControl::-webkit-slider-runnable-track {
+  background: #555;
+  border-radius: 3px;
+}
+
+#volumeControl::-moz-range-track {
+  background: #555;
+  border-radius: 3px;
+}
+
+#volumeControl::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #eee;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -5px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+#volumeControl::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #eee;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+/* style of zooming button */
 .controls {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   right: 10px;
-  z-index: 10;
   display: flex;
-  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
 }
 
 .controls button {
   font-size: 18px;
-  padding: 5px 10px;
-  margin: 4px 0;
+  padding: 8px 14px;
+  cursor: pointer;
+  background: #444;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.controls button:hover {
+  background: #666;
 }

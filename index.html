@@ -6,13 +6,37 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="controls">
-    <button id="zoomIn">+</button>
-    <button id="zoomOut">−</button>
-  </div>
+
+  <!-- Menu Button -->
+  <button id="menuToggle" aria-label="Toggle Menu" class="menu-toggle">☰</button>
+
+  <!-- Menu -->
+  <aside id="sideMenu" class="closed">
+    <section class="music-section">
+      <h3>音乐控制</h3>
+      <div class="music-wrapper">
+        <button id="musicToggle" class="music-control" aria-label="Toggle Music">
+          <img src="nioh3_assets/speaker_icon.png" alt="音乐开关" />
+        </button>
+        <input id="volumeControl" type="range" min="0" max="100" value="100" step="1" aria-label="音量控制" />
+      </div>
+    </section>
+  </aside>
+
+  <section class="zoom-section">
+    <h3>缩放控制</h3>
+    <div class="controls">
+      <button id="zoomIn">+</button>
+      <button id="zoomOut">−</button>
+    </div>
+  </section>
+
+  <!-- Map Container -->
   <div id="mapContainer">
     <img id="mapImage" src="nioh3_assets/nioh3_map_highres.png" alt="地图" draggable="false" />
   </div>
+
+  <audio id="bgMusic" src="nioh3_assets/nioh3.mp3" loop></audio>
 
   <script src="map.js"></script>
 </body>

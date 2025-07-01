@@ -3,6 +3,11 @@ const mapImage = document.getElementById('mapImage');
 const zoomInBtn = document.getElementById('zoomIn');
 const zoomOutBtn = document.getElementById('zoomOut');
 
+
+
+
+
+
 let scale = 1;
 const minScale = 0.85;
 const maxScale = 5;
@@ -42,7 +47,7 @@ function updateTransform() {
   mapImage.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
 }
 
-// Banned Default Method from browser "Ctrl+Wheel" 
+// Defaut method Ctrl+ wheel banned
 window.addEventListener('wheel', e => {
   if (e.ctrlKey) e.preventDefault();
 }, { passive: false });
@@ -59,7 +64,7 @@ mapImage.onload = () => {
   scale = Math.min(scaleX, scaleY);
 
   scale = Math.min(scale * 2.5, maxScale);
-  if (scale < minScale) scale = minScale; 
+  if (scale < minScale) scale = minScale;
 
   offsetX = (containerWidth - imageWidth * scale) / 2;
   offsetY = (containerHeight - imageHeight * scale) / 2;
@@ -68,7 +73,7 @@ mapImage.onload = () => {
   updateTransform();
 };
 
-// ZoomIn Zoomout Buttons(click ation monitor)
+// Zooming Button Related
 zoomInBtn.onclick = () => {
   zoomAtCenter(true);
 };
@@ -95,7 +100,7 @@ function zoomAtCenter(zoomIn) {
   updateTransform();
 }
 
-// mouse LeftButton Drag method
+// Mouse Left Button Drag Event Related
 mapContainer.addEventListener('mousedown', (e) => {
   isDragging = true;
   dragStartX = e.clientX;
@@ -125,7 +130,7 @@ mapContainer.addEventListener('mouseleave', () => {
   mapContainer.style.cursor = 'grab';
 });
 
-// Mouse Wheel Drag Method
+// Mouse Wheel Event Related
 mapContainer.addEventListener('wheel', (e) => {
   e.preventDefault();
   const rect = mapContainer.getBoundingClientRect();
@@ -146,3 +151,70 @@ mapContainer.addEventListener('wheel', (e) => {
   clampOffsets();
   updateTransform();
 }, { passive: false });
+
+/* --- Menu Control Related --- */
+const menuToggleBtn = document.getElementById('menuToggle');
+const sideMenu = document.getElementById('sideMenu');
+
+menuToggleBtn.addEventListener('click', () => {
+  const isOpen = sideMenu.classList.toggle('open');
+  if (isOpen) {
+    mapContainer.classList.add('menu-open');
+    menuToggleBtn.classList.add('menu-open');
+  } else {
+    mapContainer.classList.remove('menu-open');
+    menuToggleBtn.classList.remove('menu-open');
+  }
+});
+
+/* --- Music Control related --- */
+const musicToggleBtn = document.getElementById('musicToggle');
+const bgMusic = document.getElementById('bgMusic');
+const volumeControl = document.getElementById('volumeControl');
+let isPlaying = false;
+
+function updateButton() {
+  if (isPlaying) {
+    musicToggleBtn.classList.remove('paused');
+  } else {
+    musicToggleBtn.classList.add('paused');
+  }
+}
+
+function tryAutoPlay() {
+  bgMusic.play().then(() => {
+    isPlaying = true;
+    updateButton();
+  }).catch(() => {
+    isPlaying = false;
+    updateButton();
+  });
+}
+
+musicToggleBtn.addEventListener('click', () => {
+  if (!isPlaying) {
+    bgMusic.play().then(() => {
+      isPlaying = true;
+      updateButton();
+    }).catch(() => {
+      alert('auto-playing failed, please press "play" by yourself');
+    });
+  } else {
+    bgMusic.pause();
+    isPlaying = false;
+    updateButton();
+  }
+});
+
+// init music volume to max
+bgMusic.volume = 1.0;
+
+// volume control event and calculations
+volumeControl.addEventListener('input', () => {
+  const vol = volumeControl.value / 100;  // 0 ~ 1
+  bgMusic.volume = vol;
+});
+
+window.addEventListener('load', () => {
+  tryAutoPlay();
+});
