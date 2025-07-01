@@ -23,7 +23,7 @@
 ├── index.html        # Main page
 ├── style.css         # Map styling
 ├── map.js            # Logic for zooming, dragging, and markers
-├── assets/
-│   └── map.png       # High-res map image (4K supported)
+├── assets/           # Nioh3 related assets(pics, musics, buttons, etc)
+│   └── xxx      
 └── data/
     └── markers.json  # Customizable marker data
