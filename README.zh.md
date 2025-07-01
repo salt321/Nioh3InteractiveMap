@@ -1,16 +1,9 @@
-
----
-
-##  `README.zh.md`（中文）
-
-```markdown
-📘 [English Version](./README.md) | 📗 [日本語版](./README.ja.md)
+📘 [English Version ](./README.md) | 📗 [日本語版 (Japanese)](./README.ja.md)
 
 # 仁王3互动地图
 
-> 一个专为《仁王3》设计的互动式地图工具。  
-> 支持缩放、拖拽、自定义标注、地形高亮，可部署至 GitHub Pages。纯前端实现，无需后端。
-
+> 一个专为《仁王3》设计的互动式地图工具.
+> 支持缩放、拖拽、自定义标注、地形高亮.
 ---
 
 ## 🔧 功能特性
