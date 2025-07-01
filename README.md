@@ -1,26 +1,29 @@
+📘 [中文版本 (Chinese)](./README.zh.md) | 📗 [日本語版 (Japanese)](./README.ja.md)
+
 # Nioh 3 Interactive Map
 
-> A fully interactive web-based map designed for *Nioh 3*. Supports zooming, panning, custom markers, and terrain highlighting.
+> A fully interactive web-based map designed for *Nioh 3*.  
+> Supports zoom, drag, custom markers, terrain highlighting, and deployable to GitHub Pages. No backend required.
 
 ---
 
 ## 🔧 Features
 
--  **Custom Markers**: Add key locations like bosses, chests, shortcuts, and more
--  **Zoom & Pan**: Smooth map navigation with mouse scroll and drag
--  **Terrain Highlighting**: Clear visual separation between accessible terrain and background
--  **Static Deployment**: Easily hostable via GitHub Pages as a game companion tool
+-  **Custom Markers** – Add points of interest like bosses, items, shortcuts
+-  **Zoom & Pan** – Navigate freely across a high-resolution map
+-  **Terrain Highlighting** – Clear visual distinction between playable and background areas
+-  **Static Deployment** – Host on GitHub Pages, works entirely client-side
 
 ---
 
-## Project Structure
+## 📦 Project Structure
 
 ```plaintext
 .
-├── index.html        # Main entry
-├── style.css         # Styling
-├── map.js            # Core logic (zoom, pan, marker handling)
+├── index.html        # Main page
+├── style.css         # Map styling
+├── map.js            # Logic for zooming, dragging, and markers
 ├── assets/
-│   └── map.png       # 4K map image
+│   └── map.png       # High-res map image (4K supported)
 └── data/
-    └── markers.json  # Marker data (customizable)
+    └── markers.json  # Customizable marker data
