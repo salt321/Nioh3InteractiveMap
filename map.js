@@ -47,10 +47,15 @@ function updateTransform() {
   mapImage.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
 }
 
-// Defaut method Ctrl+ wheel banned
+// Defaut method Ctrl+ wheel Banned
 window.addEventListener('wheel', e => {
   if (e.ctrlKey) e.preventDefault();
 }, { passive: false });
+
+// Default method Mouse Button Right Click Banned
+window.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+});
 
 // Init Container
 mapImage.onload = () => {
