@@ -1,6 +1,6 @@
 # Nioh 3 Interactive Map 🗺️
 
-> A fully interactive web-based map designed for *Nioh 3*. Supports zooming, panning, custom markers, and terrain highlighting. Built with pure frontend technologies and deployable to GitHub Pages—no backend required.
+> A fully interactive web-based map designed for *Nioh 3*. Supports zooming, panning, custom markers, and terrain highlighting.
 
 ---
 
