@@ -1,15 +1,10 @@
-
----
-
-## 📄 `README.ja.md`（日文）
-
-```markdown
-📘 [English Version](./README.md) | 📘 [中文 (Chinese)](./README.zh.md)
+📘 [English Version](./README.md) | 📗 [中文 (Chinese)](./README.zh.md)
 
 # 仁王3インタラクティブマップ
 
 > 『仁王3』向けに制作された完全なインタラクティブWebマップ。  
-> ズーム・ドラッグ・カスタムマーカー・地形の明暗表示などをサポート。GitHub Pages で簡単に公開可能。バックエンド不要。
+> ズーム・ドラッグ・カスタムマーカー・地形の明暗表示などをサポート。
+
 
 ---
 
