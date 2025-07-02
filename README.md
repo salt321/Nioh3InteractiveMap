@@ -20,10 +20,12 @@
 
 ```plaintext
 .
-├── index.html        # Main page
-├── style.css         # Map styling
-├── map.js            # Logic for zooming, dragging, and markers
-├── assets/           # Nioh3 related assets(pics, musics, buttons, etc)
-│   └── xxx      
+├── index.html           # Main page
+├── style.css            # Map styling
+├── js/                  # JavaScript files
+│   ├── map.js           # Logic for zooming, dragging, and markers
+│   └── map_editing_tool.js # Editing tool logic
+├── assets/              # Nioh3 related assets (pics, musics, buttons, etc)
+│   └── xxx
 └── data/
-    └── markers.json  # Customizable marker data
+    └── markers.json     # Customizable marker data
