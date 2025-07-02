@@ -3,41 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <title>Nioh3 Interactive Map</title>
+  <!-- Link to external stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Menu Button -->
+  <!-- Menu Toggle Button (hamburger icon) -->
   <button id="menuToggle" aria-label="Toggle Menu" class="menu-toggle">☰</button>
 
-  <!-- Menu -->
+  <!-- Side Menu / Sidebar -->
   <aside id="sideMenu" class="closed">
+    <!-- Music Control Section -->
     <section class="music-section">
-      <h3>音乐控制</h3>
+      <h3>Music Control</h3>
       <div class="music-wrapper">
+        <!-- Music Toggle Button -->
         <button id="musicToggle" class="music-control" aria-label="Toggle Music">
-          <img src="nioh3_assets/speaker_icon.png" alt="音乐开关" />
+          <img src="nioh3_assets/speaker_icon.png" alt="Music On/Off" />
         </button>
-        <input id="volumeControl" type="range" min="0" max="100" value="100" step="1" aria-label="音量控制" />
+        <!-- Volume Slider -->
+        <input id="volumeControl" type="range" min="0" max="100" value="100" step="1" aria-label="Volume Control" />
       </div>
     </section>
   </aside>
 
+  <!-- Zoom Controls Section -->
   <section class="zoom-section">
-    <h3>缩放控制</h3>
     <div class="controls">
       <button id="zoomIn">+</button>
       <button id="zoomOut">−</button>
+      <button id="debugToggle">Debug</button>
     </div>
   </section>
 
-  <!-- Map Container -->
+
+
+
+  <!-- Main Map Container -->
   <div id="mapContainer">
-    <img id="mapImage" src="nioh3_assets/nioh3_map_highres.png" alt="地图" draggable="false" />
+    <!-- Map Image -->
+    <img id="mapImage" src="nioh3_assets/nioh3_map_highres.png" alt="Map" draggable="false" />
+    <!-- Background Music Audio Element -->
+    <audio id="bgMusic" src="nioh3_assets/nioh3.mp3" loop></audio>
+    <!-- Canvas Overlay for Debug Grid -->
+    <canvas id="gridOverlay" style="position:absolute; top:0; left:0; pointer-events:none; display:none;"></canvas>
   </div>
 
-  <audio id="bgMusic" src="nioh3_assets/nioh3.mp3" loop></audio>
 
-  <script src="map.js"></script>
+
+  <!-- Custom Context Menu-RightClicked -->
+  <ul id="customMenu">
+    <li> Save JSON</li>
+    <li> Mark Location</li>
+    <li> Menu Item</li>
+  </ul>
+
+  <!-- External JS Files -->
+  <script src="js/map.js"></script>
+  <script src="js/map_editing_tool.js"></script>
+
 </body>
 </html>

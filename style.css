@@ -1,3 +1,4 @@
+/* Reset default margin, set full height and hide scrollbars, set base font */
 html, body {
   margin: 0;
   height: 100%;
@@ -5,7 +6,7 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
-/* Style of Menu */
+/* Style for the hamburger menu toggle button */
 .menu-toggle {
   position: fixed;
   top: 20px;
@@ -23,33 +24,37 @@ html, body {
   transition: left 0.3s ease;
 }
 
-/*style of opened menu*/
+/* Position adjustment when menu is open */
 .menu-toggle.menu-open {
-  left: 250px; /* 250menu width + x(x = whatever addtional length you want) */
+  left: 250px;
 }
 
-/* style of side menu */
+/* Sidebar container styling */
 #sideMenu {
   position: fixed;
   top: 0;
   left: 0;
   width: 250px;
   height: 100%;
-  background: rgba(20, 20, 20, 0.95);
+  background: rgba(20, 20, 20, 0.548);
   box-shadow: 2px 0 8px rgba(0,0,0,0.6);
   padding: 20px;
   box-sizing: border-box;
   overflow-y: auto;
-  transform: translateX(-250px);
+
+  /* Initially hidden, slide out of viewport to the left */
+  transform: translateX(-100%);
   transition: transform 0.3s ease;
-  z-index: 90;
+  z-index: 1000; /* High stacking order */
   color: white;
 }
 
+/* Sidebar visible state */
 #sideMenu.open {
   transform: translateX(0);
 }
 
+/* Sidebar section headings */
 #sideMenu h3 {
   margin-top: 0;
   margin-bottom: 12px;
@@ -58,27 +63,27 @@ html, body {
   padding-bottom: 6px;
 }
 
-/* style of map container */
+/* Main map container filling viewport */
 #mapContainer {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   background-color: #222;
   user-select: none;
   cursor: grab;
-  transition: left 0.3s ease, width 0.3s ease;
-  overflow: hidden;
+
+  /* Override styles that cause map to shift when sidebar toggled */
+  left: 0 !important;
+  width: 100% !important;
+  transition: none !important;
 }
 
-/* dealing with the event- "menu Opened"  */
+/* When menu open, shift map container accordingly (optional) */
 #mapContainer.menu-open {
   left: 250px;
   width: calc(100% - 250px);
 }
 
-/* style of the map */
+/* Map image styles */
 #mapImage {
   position: absolute;
   top: 0;
@@ -86,10 +91,9 @@ html, body {
   transform-origin: top left;
   will-change: transform;
   -webkit-user-drag: none;
-
 }
 
-/* style of music controller */
+/* Music control wrapper */
 .music-wrapper {
   display: flex;
   align-items: center;
@@ -97,7 +101,7 @@ html, body {
   margin-bottom: 20px;
 }
 
-/* style of music button */
+/* Music toggle button styling */
 .music-control {
   background: transparent;
   border: none;
@@ -110,7 +114,7 @@ html, body {
   justify-content: center;
 }
 
-/*style of music button image*/
+/* Icon inside music control */
 .music-control img {
   display: block;
   width: 24px;
@@ -121,15 +125,17 @@ html, body {
   user-select: none;
 }
 
+/* Dim icon when music paused */
 .music-control.paused img {
   opacity: 0.5;
 }
 
+/* Highlight icon on hover */
 .music-control:hover img {
   opacity: 1;
 }
 
-/* music value control */
+/* Volume slider base styles */
 #volumeControl {
   width: 130px;
   height: 6px;
@@ -138,28 +144,15 @@ html, body {
   cursor: pointer;
 }
 
-#volumeControl::-webkit-slider-runnable-track {
-  background: #555;
-  border-radius: 3px;
-}
-
+/* Volume slider track styles */
+#volumeControl::-webkit-slider-runnable-track,
 #volumeControl::-moz-range-track {
   background: #555;
   border-radius: 3px;
 }
 
-#volumeControl::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  background: #eee;
-  border-radius: 50%;
-  cursor: pointer;
-  margin-top: -5px;
-  box-shadow: 0 0 2px rgba(0,0,0,0.5);
-}
-
+/* Volume slider thumb styles */
+#volumeControl::-webkit-slider-thumb,
 #volumeControl::-moz-range-thumb {
   width: 16px;
   height: 16px;
@@ -167,9 +160,10 @@ html, body {
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 0 2px rgba(0,0,0,0.5);
+  margin-top: -5px;
 }
 
-/* style of zooming button */
+/* Container for zoom and debug control buttons */
 .controls {
   position: fixed;
   bottom: 10px;
@@ -179,6 +173,7 @@ html, body {
   z-index: 100;
 }
 
+/* Style for buttons inside controls */
 .controls button {
   font-size: 18px;
   padding: 8px 14px;
@@ -190,6 +185,42 @@ html, body {
   transition: background-color 0.2s ease;
 }
 
+/* Button hover effect */
 .controls button:hover {
   background: #666;
+}
+
+/* Grid overlay canvas styling */
+#gridOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  display: none;
+}
+
+/* Custom context menu container, initially hidden */
+#customMenu {
+  display: none;
+  position: absolute;
+  border-radius: 8px;
+  background: rgba(245, 160, 3, 0.329);
+  border: 3px ridge #ff7300;
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  width: 150px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* Custom menu item style */
+#customMenu li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* Hover effect for custom menu items */
+#customMenu li:hover {
+  background-color: #ee801a;
 }
